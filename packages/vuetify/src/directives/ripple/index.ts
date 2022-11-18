@@ -173,11 +173,7 @@ function rippleShow (e: VuetifyRippleEvent) {
     value.class = element._ripple.class
   }
 
-  const ripples = element.getElementsByClassName('v-ripple__animation')
-
-  if (ripples.length > 1) {
-    element.removeChild(ripples[0])
-  }
+  ripples.hide(element);
 
   if (isTouchEvent(e)) {
     // already queued that shows or hides the ripple
