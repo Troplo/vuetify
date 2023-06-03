@@ -117,9 +117,18 @@
       { "divider": true },
       { "subheader": "data-and-display" },
       "tables",
+      "virtual-scroller",
       { "divider": true },
       { "subheader": "grids" },
       "grids",
+      { "divider": true },
+      { "subheader": "selection" },
+      "button-groups",
+      "carousels",
+      "chip-groups",
+      "item-groups",
+      "slide-groups",
+      "windows",
       { "divider": true },
       { "subheader": "feedback" },
       "alerts",
@@ -141,14 +150,6 @@
       { "divider": true },
       { "subheader": "pickers" },
       "color-pickers",
-      { "divider": true },
-      { "subheader": "selection" },
-      "button-groups",
-      "carousels",
-      "chip-groups",
-      "item-groups",
-      "slide-groups",
-      "windows",
       { "divider": true },
       { "subheader": "providers" },
       "defaults-providers",
@@ -187,6 +188,14 @@
     "items": [
       "introduction",
       {
+        "title": "bottom-sheets",
+        "subfolder": "components"
+      },
+      {
+        "title": "data-iterators",
+        "subfolder": "components"
+      },
+      {
         "title": "data-tables",
         "subfolder": "components",
         "activeIcon": "",
@@ -194,6 +203,7 @@
         "items": [
           "basics",
           "headers",
+          "selection",
           "sorting",
           "pagination",
           "filtering",
@@ -203,7 +213,18 @@
           "server-side-tables"
         ]
       },
-      "virtual-scroller"
+      {
+        "title": "dates",
+        "subfolder": "features"
+      },
+      {
+        "title": "infinite-scroller",
+        "subfolder": "components"
+      },
+      {
+        "title": "skeleton-loaders",
+        "subfolder": "components"
+      }
     ]
   },
   {
@@ -212,13 +233,14 @@
     "activeIcon": "mdi-human-male-board",
     "items": [
       "jobs-for-vue",
-      "ui-kits"
+      "ui-kits",
+      "themes"
     ]
   },
   {
     "title": "about",
-    "inactiveIcon": "mdi-vuetify",
-    "activeIcon": "mdi-vuetify",
+    "inactiveIcon": "$vuetify-outline",
+    "activeIcon": "$vuetify",
     "items": [
       "security-disclosure",
       "code-of-conduct"

@@ -84,7 +84,8 @@ cd vuetify
 yarn
 
 # Build the packages
-yarn build
+yarn build vuetify
+yarn build api
 ```
 
 The build process compiles all the Vuetify packages for development and may take a while (grab some ☕). Once the packages are built, you can start developing.
@@ -125,12 +126,6 @@ The **App.vue** file used for Vuetify development is located in `packages/vuetif
 The documentation is located in `packages/docs` but also uses some files from `packages/api-generator`. A dev server for the documentation can be started by running `yarn dev docs` from the project root and will be available on [localhost:8080](http://localhost:8080/) by default.
 
 If you want to see changes from Vuetify in the documentation you need to run `yarn build:lib` in the vuetify package before starting the documentation server.
-
-<alert type="info">
-
-Please note that Vuetify v3's documentation is located on the `next` branch and not on the `master` branch.
-
-</alert>
 
 ### Submitting Changes / Pull Requests
 

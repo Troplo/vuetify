@@ -1,5 +1,6 @@
-import type { TouchStoredHandlers } from './directives/touch'
+// Types
 import type { Events, VNode } from 'vue'
+import type { TouchStoredHandlers } from './directives/touch'
 
 declare global {
   interface HTMLCollection {
@@ -63,6 +64,10 @@ declare global {
       viewArg: Window,
       detailArg: number,
     ): void
+  }
+
+  interface MouseEvent {
+    sourceCapabilities?: { firesTouchEvents: boolean }
   }
 
   function parseInt(s: string | number, radix?: number): number

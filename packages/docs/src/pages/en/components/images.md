@@ -1,6 +1,6 @@
 ---
-nav: Images
 meta:
+  nav: Images
   title: Image component
   description: The image component provides a flexible interface for displaying different types of images.
   keywords: images, vuetify image component, vue image component
@@ -31,6 +31,15 @@ The `v-img` component is packed with features to support rich media. Combined wi
 | [v-img](/api/v-img/) | Primary Component |
 
 <api-inline hide-links />
+
+## Caveats
+
+<alert type="warning">
+
+  The **lazy-src** property has no effect unless either **height** or **aspect-ratio** are provided. This is because
+  the image container needs a non-zero height in order for the temporary image to be shown.
+
+</alert>
 
 ## Examples
 
@@ -86,3 +95,9 @@ This will behave similarly to:
 You can use `v-img` to make, for example, a picture gallery.
 
 <example file="v-img/misc-grid" />
+
+#### Complex Grid Layout
+
+Build a more complex picture gallery layout using `flex-box` classes.
+
+<example file="v-img/complex-grid" />

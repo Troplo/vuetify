@@ -2,38 +2,28 @@
 import './VOverlay.sass'
 
 // Composables
-import { makeActivatorProps, useActivator } from './useActivator'
-import { makeDimensionProps, useDimension } from '@/composables/dimensions'
-import { makeLazyProps, useLazy } from '@/composables/lazy'
 import { makeLocationStrategyProps, useLocationStrategies } from './locationStrategies'
 import { makeScrollStrategyProps, useScrollStrategies } from './scrollStrategies'
-import { makeThemeProps, provideTheme } from '@/composables/theme'
-import { makeTransitionProps, MaybeTransition } from '@/composables/transition'
-import { useBackButton, useRouter } from '@/composables/router'
+import { makeActivatorProps, useActivator } from './useActivator'
 import { useBackgroundColor } from '@/composables/color'
-import { useProxiedModel } from '@/composables/proxiedModel'
+import { makeComponentProps } from '@/composables/component'
+import { makeDimensionProps, useDimension } from '@/composables/dimensions'
 import { useHydration } from '@/composables/hydration'
+import { makeLazyProps, useLazy } from '@/composables/lazy'
 import { useRtl } from '@/composables/locale'
+import { useProxiedModel } from '@/composables/proxiedModel'
+import { useBackButton, useRouter } from '@/composables/router'
 import { useScopeId } from '@/composables/scopeId'
 import { useStack } from '@/composables/stack'
 import { useTeleport } from '@/composables/teleport'
+import { makeThemeProps, provideTheme } from '@/composables/theme'
 import { useToggleScope } from '@/composables/toggleScope'
+import { makeTransitionProps, MaybeTransition } from '@/composables/transition'
 
 // Directives
 import { ClickOutside } from '@/directives/click-outside'
 
 // Utilities
-import {
-  animate,
-  convertToUnit,
-  genericComponent,
-  getScrollParent,
-  IN_BROWSER,
-  pick,
-  propsFactory,
-  standardEasing,
-  useRender,
-} from '@/util'
 import {
   computed,
   mergeProps,
@@ -44,11 +34,20 @@ import {
   Transition,
   watch,
 } from 'vue'
+import {
+  animate,
+  convertToUnit,
+  genericComponent,
+  getScrollParent,
+  IN_BROWSER,
+  propsFactory,
+  standardEasing,
+  useRender,
+} from '@/util'
 
 // Types
+import type { PropType, Ref } from 'vue'
 import type { BackgroundColorData } from '@/composables/color'
-import type { MakeSlots } from '@/util'
-import type { ExtractPropTypes, PropType, Ref } from 'vue'
 
 interface ScrimProps {
   [key: string]: unknown
@@ -73,10 +72,10 @@ function Scrim (props: ScrimProps) {
   )
 }
 
-export type OverlaySlots = MakeSlots<{
-  default: [{ isActive: Ref<boolean> }]
-  activator: [{ isActive: boolean, props: Record<string, any> }]
-}>
+export type OverlaySlots = {
+  default: { isActive: Ref<boolean> }
+  activator: { isActive: boolean, props: Record<string, any> }
+}
 
 export const makeVOverlayProps = propsFactory({
   absolute: Boolean,
@@ -102,13 +101,14 @@ export const makeVOverlayProps = propsFactory({
   },
 
   ...makeActivatorProps(),
+  ...makeComponentProps(),
   ...makeDimensionProps(),
   ...makeLazyProps(),
   ...makeLocationStrategyProps(),
   ...makeScrollStrategyProps(),
   ...makeThemeProps(),
   ...makeTransitionProps(),
-}, 'v-overlay')
+}, 'VOverlay')
 
 export const VOverlay = genericComponent<OverlaySlots>()({
   name: 'VOverlay',
@@ -259,8 +259,13 @@ export const VOverlay = genericComponent<OverlaySlots>()({
                   },
                   themeClasses.value,
                   rtlClasses.value,
+                  props.class,
                 ]}
-                style={[stackStyles.value, { top: convertToUnit(top.value) }]}
+                style={[
+                  stackStyles.value,
+                  { top: convertToUnit(top.value) },
+                  props.style,
+                ]}
                 ref={ root }
                 { ...scopeId }
                 { ...attrs }
@@ -314,7 +319,3 @@ export const VOverlay = genericComponent<OverlaySlots>()({
 })
 
 export type VOverlay = InstanceType<typeof VOverlay>
-
-export function filterVOverlayProps (props: Partial<ExtractPropTypes<ReturnType<typeof makeVOverlayProps>>>) {
-  return pick(props, Object.keys(VOverlay.props) as any)
-}

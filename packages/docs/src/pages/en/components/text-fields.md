@@ -1,6 +1,6 @@
 ---
-nav: Text fields
 meta:
+  nav: Text fields
   title: Text field component
   description: The text field component accepts textual input from users.
   keywords: text fields, vuetify text field component, vue text field component
@@ -258,14 +258,14 @@ The following example uses the **label**, **prepend**, and **prepend-inner** slo
     <template v-slot:prepend>
       <v-icon
         :color="model ? 'primary' : undefined"
-        icon="mdi-vuetify"
+        icon="$vuetify"
       />
     </template>
 
     <template v-slot:append-inner>
       <v-icon
         v-if="model"
-        icon="mdi-success"
+        icon="mdi-check-circle"
       />
     </template>
 
